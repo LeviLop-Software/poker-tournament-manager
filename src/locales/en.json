@@ -111,7 +111,8 @@
   "confirm": {
     "restart": "Are you sure you want to restart the tournament?",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "replaceData": "Do you want to replace all existing data? Click 'Yes' for complete replacement or 'No' to only add new data."
   },
   "export": {
     "generated": "Generated",
@@ -146,7 +147,13 @@
     "profitByPlayer": "Profit By Player",
     "entriesByPlayer": "Entries By Player",
     "noStatsAvailable": "Not enough data for statistics. Play more tournaments!",
-    "lastTournaments": "Last {count} Tournaments"
+    "lastTournaments": "Last {count} Tournaments",
+    "exportCSV": "Export History as CSV",
+    "importCSV": "Import History from CSV",
+    "exportSuccess": "Tournament history exported successfully",
+    "importSuccess": "Tournament history imported successfully",
+    "importError": "Error importing tournament history. The file format may be invalid.",
+    "backupData": "Backup Data"
   },
   "actions": "Actions"
 }

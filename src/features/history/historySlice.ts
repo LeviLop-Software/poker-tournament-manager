@@ -36,13 +36,33 @@ export const historySlice = createSlice({
     setState: (_state, action: PayloadAction<HistoryState>) => {
       return action.payload;
     },
+    importHistory: (state, action: PayloadAction<SavedTournament[]>) => {
+      // Add imported tournaments to the existing ones
+      // Use a Set to deduplicate by ID
+      const existingIds = new Set(state.savedTournaments.map(t => t.id));
+      const newTournaments = action.payload.filter(t => !existingIds.has(t.id));
+      
+      // Sort all tournaments by date (newest first)
+      state.savedTournaments = [...state.savedTournaments, ...newTournaments]
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    },
+    replaceHistory: (_state, action: PayloadAction<SavedTournament[]>) => {
+      // Replace all tournaments with the imported ones
+      return {
+        savedTournaments: action.payload.sort((a, b) => 
+          new Date(b.date).getTime() - new Date(a.date).getTime()
+        )
+      };
+    },
   },
 });
 
 export const { 
   saveTournament, 
   deleteTournament,
-  setState 
+  setState,
+  importHistory,
+  replaceHistory 
 } = historySlice.actions;
 
 export default historySlice.reducer;

@@ -1,17 +1,20 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux';
-import { deleteTournament } from '../history/historySlice';
+import { deleteTournament, importHistory, replaceHistory } from '../history/historySlice';
 import { formatCurrency } from '../../utils/tournament';
 import { formatDuration } from '../../utils/history';
+import { downloadHistoryCSV, importHistoryFromCSV } from '../../utils/csv';
 import TournamentStatistics from './TournamentStatistics';
 import type { RootState } from '../../store';
 import type { SavedTournament } from '../../types';
 import './TournamentHistory.css';
+import './history-buttons.css';
 
 const TournamentHistory: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const fileInputRef = useRef<HTMLInputElement>(null);
   
   const savedTournaments = useAppSelector((state: RootState) => (state as any).history.savedTournaments);
   const [selectedTournament, setSelectedTournament] = useState<SavedTournament | null>(null);
@@ -36,9 +39,79 @@ const TournamentHistory: React.FC = () => {
     return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
   };
   
+  const handleExportCSV = () => {
+    // Add date to filename in format YYYY-MM-DD
+    const today = new Date();
+    const dateStr = today.toISOString().split('T')[0]; // Gets YYYY-MM-DD format
+    const filename = `tournament-history-${dateStr}.csv`;
+    
+    downloadHistoryCSV(savedTournaments, filename);
+    alert(t('history.exportSuccess'));
+  };
+  
+  const handleImportClick = () => {
+    fileInputRef.current?.click();
+  };
+  
+  const handleImportCSV = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const content = e.target?.result as string;
+      const importedTournaments = importHistoryFromCSV(content);
+      
+      if (importedTournaments) {
+        if (window.confirm(t('confirm.replaceData'))) {
+          dispatch(replaceHistory(importedTournaments));
+        } else {
+          dispatch(importHistory(importedTournaments));
+        }
+        alert(t('history.importSuccess'));
+      } else {
+        alert(t('history.importError'));
+      }
+      
+      // Reset file input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    };
+    
+    reader.readAsText(file);
+  };
+  
   return (
     <div className="tournament-history">
       <h2>{t('history.title')}</h2>
+      
+      {/* Always show import button for data transfer */}
+      <div className="export-import-buttons" style={{ marginBottom: '20px' }}>
+        {savedTournaments.length > 0 && (
+          <button 
+            className="export-csv-btn"
+            onClick={handleExportCSV}
+            title={t('history.exportCSV')}
+          >
+            {t('history.exportCSV')}
+          </button>
+        )}
+        <button 
+          className="import-csv-btn"
+          onClick={handleImportClick}
+          title={t('history.importCSV')}
+        >
+          {t('history.importCSV')}
+        </button>
+        <input 
+          type="file" 
+          ref={fileInputRef}
+          style={{ display: 'none' }} 
+          accept=".csv"
+          onChange={handleImportCSV}
+        />
+      </div>
       
       {savedTournaments.length === 0 ? (
         <div className="no-tournaments">

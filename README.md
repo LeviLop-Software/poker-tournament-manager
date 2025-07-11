@@ -10,13 +10,11 @@ An advanced, feature-rich React application for managing poker tournaments with 
 - Player management with rebuys and eliminations
 - Automatic blinds and timer management
 - Tournament statistics and cash equivalents
-
-## Expanding the ESLint configuration
-
 - Prize pool distribution
 - Tournament history with advanced statistics
 - Sound cues for level-up and countdown
 - Summary export (text/image)
+- CSV import/export for tournament history (backup & data transfer)
 
 ## Technologies
 
@@ -36,5 +34,19 @@ An advanced, feature-rich React application for managing poker tournaments with 
 ## Language Support
 
 The application supports both English and Hebrew languages with full RTL (Right-to-Left) support.
+
+## Data Backup & Transfer
+
+You can backup and transfer your tournament history data between computers using the CSV export/import feature:
+
+1. Go to the "Tournament History" tab
+2. Click "Export History as CSV" to download a backup file
+3. To restore data, click "Import History from CSV" and select your CSV file
+4. Choose whether to replace all existing data or only add new tournaments
+
+This feature is useful for:
+- Backing up your tournament data
+- Transferring data between computers
+- Archiving old tournaments
 
 
