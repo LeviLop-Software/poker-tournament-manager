@@ -1,0 +1,117 @@
+{
+  "app": {
+    "title": "Poker Tournament Manager",
+    "language": "Language",
+    "theme": "Theme"
+  },
+  "tournament": {
+    "setup": "Tournament Setup",
+    "name": "Tournament Name",
+    "entryFee": "Entry Fee",
+    "startingChips": "Starting Chips",
+    "levelDuration": "Level Duration",
+    "numberOfWinners": "Number of Winners",
+    "cashoutPlaces": "Number of Cashout Places",
+    "blindsStructure": "Blinds Structure",
+    "summary": "Tournament Summary",
+    "editSettings": "Edit Settings",
+    "details": "Tournament Details",
+    "playWithAnte": "Play with Ante"
+  },
+  "player": {
+    "management": "Player Management",
+    "name": "Name",
+    "add": "Add Player",
+    "remove": "Remove",
+    "rebuy": "Rebuy",
+    "addEntry": "Add Entry",
+    "eliminate": "Eliminate",
+    "chips": "Chips",
+    "active": "Active",
+    "eliminated": "Eliminated",
+    "rebuys": "Rebuys",
+    "inactive": "Inactive",
+    "atLevel": "at Level",
+    "entries": "Number of Entries",
+    "status": "Status",
+    "enterName": "Enter player name",
+    "noPlayers": "No players added yet"
+  },
+  "controls": {
+    "start": "Start",
+    "pause": "Pause",
+    "resume": "Resume",
+    "nextLevel": "Next Level",
+    "previousLevel": "Previous Level",
+    "restart": "Restart"
+  },
+  "time": {
+    "minutes": "min"
+  },
+  "board": {
+    "level": "Level",
+    "currentBlinds": "Current Blinds",
+    "nextBlinds": "Next Blinds",
+    "timeRemaining": "Time Remaining",
+    "elapsedTime": "Elapsed Time",
+    "blinds": "Blinds",
+    "ante": "Ante",
+    "players": "Players",
+    "place": "th",
+    "firstPlace": "1st Place",
+    "secondPlace": "2nd Place",
+    "thirdPlace": "3rd Place",
+    "cashoutPlaces": "Cashout Places",
+    "addLevel": "Add Level"
+  },
+  "statistics": {
+    "title": "Statistics",
+    "totalEntries": "Total Entries",
+    "activePlayers": "Active Players",
+    "totalPrizePool": "Total Prize Pool",
+    "averageChipStack": "Average Chip Stack",
+    "averageStack": "Average Stack",
+    "cashEquivalent": "Cash Equivalent",
+    "calculate": "Calculate",
+    "export": "Export Results",
+    "exportText": "Export as Text",
+    "exportAsImage": "Export as Image",
+    "exportSuccess": "Tournament results exported successfully",
+    "exportImageSuccess": "Tournament image exported successfully",
+    "exportError": "Error exporting tournament results",
+    "tournamentInfo": "Tournament Information",
+    "currentStandings": "Current Standings",
+    "finalStandings": "",
+    "topPlayers": "Top Players",
+    "tournamentStats": "Tournament Statistics",
+    "prizePool": "Prize Pool",
+    "prizeDistribution": "Prize Distribution",
+    "finalChipsInstructions": "Enter the final chip count for each player before exporting results.",
+    "playersList": "Players List",
+    "entries": "Entries",
+    "rank": "Rank",
+    "exportSummaryText": "Export Summary as Text",
+    "exportSummaryImage": "Export Summary as Image"
+  },
+  "settings": {
+    "title": "Settings",
+    "sound": "Sound",
+    "on": "On",
+    "off": "Off",
+    "save": "Save",
+    "cancel": "Cancel",
+    "show": "Show",
+    "hide": "Hide"
+  },
+  "confirm": {
+    "restart": "Are you sure you want to restart the tournament?",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "export": {
+    "asText": "Export as Text",
+    "asImage": "Export as Image",
+    "generated": "Generated"
+  },
+  "actions": "Actions"
+}

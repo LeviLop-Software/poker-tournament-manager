@@ -1,0 +1,6 @@
+/* Make sure the Chakra components blend well with our custom styling */
+[data-theme="dark"] .chakra-ui-dark,
+[data-theme="light"] .chakra-ui-light {
+  --chakra-colors-white: var(--card-bg);
+  --chakra-colors-black: var(--text-color);
+}

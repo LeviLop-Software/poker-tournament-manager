@@ -1,0 +1,118 @@
+{
+  "app": {
+    "title": "מנהל טורניר פוקר",
+    "language": "שפה",
+    "theme": "ערכת נושא"
+  },
+  "tournament": {
+    "setup": "הגדרת טורניר",
+    "name": "שם הטורניר",
+    "entryFee": "דמי כניסה",
+    "startingChips": "צ'יפים התחלתיים",
+    "levelDuration": "זמן לשלב",
+    "numberOfWinners": "מספר זוכים",
+    "cashoutPlaces": "מספר מקומות לפרסים",
+    "blindsStructure": "מבנה בליינדים",
+    "summary": "סיכום טורניר",
+    "editSettings": "עריכת הגדרות",
+    "details": "פרטי טורניר",
+    "playWithAnte": "שחק עם אנטה"
+  },
+  "player": {
+    "management": "ניהול שחקנים",
+    "name": "שם",
+    "add": "הוסף שחקן",
+    "remove": "הסר",
+    "rebuy": "ריבאי",
+    "addEntry": "הוסף כניסה",
+    "eliminate": "הוצא",
+    "chips": "צ'יפים",
+    "active": "פעיל",
+    "eliminated": "הוצא",
+    "rebuys": "ריבאיים",
+    "inactive": "לא פעיל",
+    "atLevel": "שלב",
+    "entries": "מספר כניסות",
+    "status": "סטטוס",
+    "enterName": "הכנס שם שחקן",
+    "noPlayers": "עדיין לא הוספו שחקנים"
+  },
+  "controls": {
+    "start": "התחל",
+    "pause": "השהה",
+    "resume": "המשך",
+    "nextLevel": "רמה הבאה",
+    "previousLevel": "רמה קודמת",
+    "restart": "התחל מחדש"
+  },
+  "time": {
+    "minutes": "דק'"
+  },
+  "board": {
+    "level": "רמה",
+    "currentBlinds": "בליינדים נוכחיים",
+    "nextBlinds": "בליינדים הבאים",
+    "timeRemaining": "זמן נותר",
+    "elapsedTime": "זמן שעבר",
+    "blinds": "בליינדים",
+    "ante": "אנטה",
+    "players": "שחקנים",
+    "place": "",
+    "firstPlace": "מקום ראשון",
+    "secondPlace": "מקום שני",
+    "thirdPlace": "מקום שלישי",
+    "cashoutPlaces": "מקומות לפרסים",
+    "addLevel": "הוסף רמה"
+  },
+  "statistics": {
+    "title": "סטטיסטיקה",
+    "totalEntries": "סה\"כ כניסות",
+    "activePlayers": "שחקנים פעילים",
+    "totalPlayers": "סה\"כ שחקנים",
+    "totalPrizePool": "סה\"כ פרסים",
+    "averageChipStack": "ממוצע צ'יפים",
+    "averageStack": "ממוצע צ'יפים",
+    "cashEquivalent": "שווי כספי",
+    "calculate": "חשב",
+    "export": "ייצא תוצאות",
+    "exportText": "ייצא כטקסט",
+    "exportAsImage": "ייצא כתמונה",
+    "exportSuccess": "תוצאות הטורניר יוצאו בהצלחה",
+    "exportImageSuccess": "תמונת הטורניר יוצאה בהצלחה",
+    "exportError": "שגיאה בייצוא תוצאות הטורניר",
+    "tournamentInfo": "פרטי הטורניר",
+    "currentStandings": "דירוג נוכחי",
+    "finalStandings": "",
+    "topPlayers": "שחקנים מובילים",
+    "tournamentStats": "סטטיסטיקת טורניר",
+    "prizePool": "סכום הפרסים",
+    "prizeDistribution": "חלוקת פרסים",
+    "finalChipsInstructions": "הזן את מספר הצ'יפים הסופי לכל שחקן לפני ייצוא התוצאות.",
+    "playersList": "רשימת שחקנים",
+    "entries": "כניסות",
+    "rank": "דירוג",
+    "exportSummaryText": "ייצא סיכום כטקסט",
+    "exportSummaryImage": "ייצא סיכום כתמונה"
+  },
+  "settings": {
+    "title": "הגדרות",
+    "sound": "צליל",
+    "on": "פועל",
+    "off": "כבוי",
+    "save": "שמור",
+    "cancel": "ביטול",
+    "show": "הצג",
+    "hide": "הסתר"
+  },
+  "confirm": {
+    "restart": "האם אתה בטוח שברצונך להתחיל את הטורניר מחדש?",
+    "yes": "כן",
+    "no": "לא"
+  },
+  "export": {
+    "asText": "ייצא כטקסט",
+    "asImage": "ייצא כתמונה",
+    "generated": "נוצר"
+  },
+  "actions": "פעולות"
+}

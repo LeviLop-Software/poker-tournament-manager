@@ -1,0 +1,96 @@
+.theme-selector {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.theme-option {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid transparent;
+  position: relative;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.theme-option:hover {
+  transform: scale(1.1);
+}
+
+.theme-option.active {
+  border-color: white;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.theme-option::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: white;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.theme-option.active::after {
+  opacity: 1;
+}
+
+.theme-vegas-blue {
+  background: linear-gradient(145deg, #0a2447, #072c5e);
+}
+
+.theme-vegas-red {
+  background: linear-gradient(145deg, #570000, #8B0000);
+}
+
+.theme-vegas-green {
+  background: linear-gradient(145deg, #003300, #004d00);
+}
+
+.theme-london {
+  background: linear-gradient(145deg, #111827, #1F2937);
+}
+
+.theme-paris {
+  background: linear-gradient(145deg, #001C3D, #002654);
+}
+
+.theme-netherlands {
+  background: linear-gradient(145deg, #CC5200, #FF6600);
+}
+
+.theme-selector-label {
+  flex-basis: 100%;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 5px;
+  color: var(--text-color);
+}
+
+.header-controls .theme-selector {
+  display: flex;
+  gap: 6px;
+  margin: 0;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.header-controls .theme-option {
+  width: 22px;
+  height: 22px;
+  margin: 0;
+}
+
+.header-controls .theme-option::after {
+  width: 6px;
+  height: 6px;
+}

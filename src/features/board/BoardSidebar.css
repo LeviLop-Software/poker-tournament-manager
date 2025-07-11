@@ -1,0 +1,306 @@
+.tournament-board-wrapper {
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
+  display: flex;
+}
+
+/* Remove any space between board and player sidebar */
+.tournament-board-wrapper > div:first-child {
+  border-right: none;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+/* Fullscreen optimizations */
+.tournament-board-wrapper:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+.tournament-board-wrapper:fullscreen [data-board-content="true"] {
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+}
+
+/* Player sidebar styles */
+.player-sidebar {
+  background: var(--theme-header-bg);
+  border-radius: 0;
+  border-left: none;
+  height: 100%;
+  width: 425px;
+  overflow-y: auto;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-secondary) var(--theme-primary);
+  max-height: 100vh;
+}
+
+.player-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.player-sidebar::-webkit-scrollbar-track {
+  background: var(--theme-bg-gradient-start);
+}
+
+.player-sidebar::-webkit-scrollbar-thumb {
+  background-color: var(--theme-secondary);
+  border-radius: 4px;
+}
+
+.player-sidebar-header {
+  color: var(--theme-accent);
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  background: var(--theme-header-bg);
+  flex-shrink: 0;
+}
+
+.player-sidebar-list {
+  color: white;
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-sidebar-list-header {
+  display: grid;
+  grid-template-columns: 1fr 100px 1fr;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 15px;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0, 102, 204, 0.5);
+  text-transform: uppercase;
+  color: #b0b0b0;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.player-sidebar-list-header > div {
+  text-align: center;
+}
+
+.player-sidebar-list-header > div:first-child {
+  text-align: left;
+}
+
+.player-sidebar-list-content {
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-secondary) var(--theme-bg-gradient-start);
+  background: rgba(5, 15, 35, 0.7);
+}
+
+.player-sidebar-list-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.player-sidebar-list-content::-webkit-scrollbar-track {
+  background: var(--theme-bg-gradient-start);
+}
+
+.player-sidebar-list-content::-webkit-scrollbar-thumb {
+  background-color: var(--theme-secondary);
+  border-radius: 4px;
+}
+
+.player-sidebar-item {
+  display: grid;
+  grid-template-columns: 1fr 100px 1fr;
+  padding: 12px 15px;
+  border-bottom: 1px solid rgba(0, 51, 102, 0.3);
+  transition: background 0.2s;
+  align-items: center;
+  font-size: 1.1rem;
+  background: rgba(10, 30, 60, 0.5);
+}
+
+.player-sidebar-item:hover {
+  background: rgba(30, 60, 100, 0.5);
+}
+
+.player-sidebar-item.active {
+  background: rgba(0, 102, 204, 0.2);
+}
+
+.player-sidebar-item.eliminated {
+  opacity: 0.7;
+}
+
+.player-sidebar-name {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 12px;
+  font-size: 1.15rem;
+  text-align: left;
+}
+
+.player-sidebar-entries {
+  text-align: center;
+}
+
+.player-sidebar-status-active {
+  color: #4caf50;
+  font-weight: 600;
+  display: inline-block;
+  padding: 3px 6px;
+  background-color: rgba(76, 175, 80, 0.15);
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+.player-sidebar-status-eliminated {
+  color: #f44336;
+  font-weight: 600;
+  display: inline-block;
+  padding: 3px 6px;
+  background-color: rgba(244, 67, 54, 0.15);
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+.player-sidebar-item.eliminated {
+  opacity: 0.7;
+}
+
+.player-sidebar-name {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.player-sidebar-entries {
+  text-align: center;
+  font-weight: 500;
+}
+
+.player-sidebar-status {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.player-sidebar-status-active {
+  display: inline-block;
+  font-size: 0.9rem;
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: rgba(0, 153, 0, 0.2);
+  color: #00cc00;
+  white-space: nowrap;
+  margin: 0 auto;
+}
+
+.player-sidebar-status-eliminated {
+  display: inline-block;
+  font-size: 0.9rem;
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: rgba(255, 0, 0, 0.1);
+  color: #ff6666;
+  white-space: nowrap;
+  margin: 0 auto;
+}
+
+/* Fullscreen styles */
+:fullscreen .player-sidebar,
+:-webkit-full-screen .player-sidebar,
+:-moz-full-screen .player-sidebar,
+:-ms-fullscreen .player-sidebar {
+  max-height: 100vh;
+  height: 100vh;
+  width: 425px;
+  border-radius: 0;
+  border-left: 1px solid rgba(0, 102, 204, 0.5);
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+  display: flex;
+  flex-direction: column;
+}
+
+:fullscreen .player-sidebar-list,
+:-webkit-full-screen .player-sidebar-list,
+:-moz-full-screen .player-sidebar-list,
+:-ms-fullscreen .player-sidebar-list {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px);
+}
+
+:fullscreen .player-sidebar-list-content,
+:-webkit-full-screen .player-sidebar-list-content,
+:-moz-full-screen .player-sidebar-list-content,
+:-ms-fullscreen .player-sidebar-list-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+:fullscreen .player-sidebar-header,
+:-webkit-full-screen .player-sidebar-header,
+:-moz-full-screen .player-sidebar-header,
+:-ms-fullscreen .player-sidebar-header {
+  font-size: 1.8rem;
+  padding: 20px;
+}
+
+:fullscreen .player-sidebar-list-header,
+:-webkit-full-screen .player-sidebar-list-header,
+:-moz-full-screen .player-sidebar-list-header,
+:-ms-fullscreen .player-sidebar-list-header {
+  font-size: 1.2rem;
+  padding: 15px;
+  grid-template-columns: 1fr 100px 1fr;
+}
+
+:fullscreen .player-sidebar-item,
+:-webkit-full-screen .player-sidebar-item,
+:-moz-full-screen .player-sidebar-item,
+:-ms-fullscreen .player-sidebar-item {
+  font-size: 1.5rem;
+  padding: 16px;
+  grid-template-columns: 1fr 100px 1fr;
+}
+
+:fullscreen .player-sidebar-list-header > div,
+:-webkit-full-screen .player-sidebar-list-header > div,
+:-moz-full-screen .player-sidebar-list-header > div,
+:-ms-fullscreen .player-sidebar-list-header > div {
+  text-align: center;
+}
+
+:fullscreen .player-sidebar-list-header > div:first-child,
+:-webkit-full-screen .player-sidebar-list-header > div:first-child,
+:-moz-full-screen .player-sidebar-list-header > div:first-child,
+:-ms-fullscreen .player-sidebar-list-header > div:first-child {
+  text-align: left;
+}
+:fullscreen .player-sidebar-status-active,
+:-webkit-full-screen .player-sidebar-status-active,
+:-moz-full-screen .player-sidebar-status-active,
+:-ms-fullscreen .player-sidebar-status-active,
+:fullscreen .player-sidebar-status-eliminated,
+:-webkit-full-screen .player-sidebar-status-eliminated,
+:-moz-full-screen .player-sidebar-status-eliminated,
+:-ms-fullscreen .player-sidebar-status-eliminated {
+  padding: 4px 10px;
+  font-size: 1rem;
+  margin: 0 auto;
+}

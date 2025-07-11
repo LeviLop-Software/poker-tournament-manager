@@ -1,0 +1,66 @@
+/* Full-screen mode optimizations */
+@media screen and (display-mode: fullscreen) {
+  .tournament-board-wrapper {
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+  
+  .tournament-controls-container {
+    display: none !important;
+  }
+  
+  .player-sidebar {
+    max-height: 100vh !important;
+    width: 425px !important;
+    overflow-y: auto !important;
+  }
+  
+  .player-sidebar-list-content {
+    overflow-y: auto !important;
+    max-height: calc(100vh - 120px) !important;
+  }
+  
+  [data-board-content="true"] {
+    padding-bottom: 1rem;
+    max-height: 100vh !important;
+    overflow-y: auto !important;
+  }
+}
+
+/* Responsive Blinds */
+@media screen and (max-width: 1400px) {
+  [data-board-content="true"] .chakra-heading[font-family="'Digital-7', monospace"] {
+    font-size: 6rem !important;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  [data-board-content="true"] .chakra-heading[font-family="'Digital-7', monospace"] {
+    font-size: 5rem !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  [data-board-content="true"] .chakra-heading[font-family="'Digital-7', monospace"] {
+    font-size: 4rem !important;
+  }
+  
+  .player-sidebar {
+    width: 320px !important;
+  }
+}
+
+/* Content safety margin */
+[data-board-content="true"] {
+  padding-bottom: 3rem;
+}
+
+/* Hide player sidebar in mobile portrait */
+@media screen and (max-width: 768px) {
+  .player-sidebar {
+    display: none;
+  }
+}
