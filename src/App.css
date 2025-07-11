@@ -368,9 +368,94 @@ body {
 :-ms-fullscreen .player-sidebar {
   margin-top: 0 !important;
 }
+
+/* RTL Support */
+html.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+html.rtl .app-header {
+  direction: rtl;
+}
+
+html.rtl .header-controls {
+  flex-direction: row-reverse;
+}
+
+html.rtl .tournament-board-container {
+  direction: rtl;
+}
+
+html.rtl .tournament-display {
+  direction: rtl;
+}
+
+html.rtl .player-sidebar-list-header,
+html.rtl .player-sidebar-item {
+  direction: rtl;
+  text-align: right;
+}
+
+html.rtl .tab-buttons {
+  direction: rtl;
+}
+
+html.rtl .tournament-item-header {
+  flex-direction: row-reverse;
+}
+
+html.rtl .tournament-controls {
+  direction: rtl;
+}
+
+/* Fix alignment for player sidebar in RTL */
+html.rtl .player-sidebar-list-header > div,
+html.rtl .player-sidebar-item > div {
+  text-align: right;
+}
+
+/* Ensure buttons icons are flipped in RTL */
+html.rtl button svg {
+  transform: scaleX(-1);
+}
+
 /* Make sure the Chakra components blend well with our custom styling */
 [data-theme="dark"] .chakra-ui-dark,
 [data-theme="light"] .chakra-ui-light {
   --chakra-colors-white: var(--card-bg);
   --chakra-colors-black: var(--text-color);
+}
+
+/* RTL styles for Chakra UI components */
+html.rtl .chakra-form-control,
+html.rtl .chakra-table,
+html.rtl .chakra-input {
+  direction: rtl;
+  text-align: right;
+}
+
+html.rtl .chakra-input__group {
+  flex-direction: row-reverse;
+}
+
+html.rtl .chakra-table th,
+html.rtl .chakra-table td {
+  text-align: right;
+}
+
+html.rtl .chakra-button {
+  direction: rtl;
+}
+
+html.rtl .chakra-form-control {
+  direction: rtl;
+}
+
+html.rtl .chakra-stack {
+  direction: rtl;
+}
+
+html.rtl .chakra-badge {
+  direction: rtl;
 }

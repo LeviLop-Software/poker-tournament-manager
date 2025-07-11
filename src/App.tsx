@@ -58,6 +58,20 @@ function AppContent() {
     }
   }, []);
 
+  // Add RTL/LTR direction based on language
+  useEffect(() => {
+    const direction = i18n.language === 'he' ? 'rtl' : 'ltr';
+    document.documentElement.dir = direction;
+    document.documentElement.lang = i18n.language;
+    
+    // Add/remove RTL class for additional RTL-specific styling
+    if (direction === 'rtl') {
+      document.documentElement.classList.add('rtl');
+    } else {
+      document.documentElement.classList.remove('rtl');
+    }
+  }, [i18n.language]);
+
   return (
     <div className="container">
       <div className="app-header">

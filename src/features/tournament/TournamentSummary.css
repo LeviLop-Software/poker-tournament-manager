@@ -265,6 +265,44 @@
   border-radius: 4px;
 }
 
+/* RTL Support */
+html.rtl .tournament-summary {
+  direction: rtl;
+  text-align: right;
+}
+
+html.rtl .summary-header {
+  flex-direction: row-reverse;
+}
+
+html.rtl .export-buttons {
+  flex-direction: row-reverse;
+}
+
+html.rtl .summary-section {
+  direction: rtl;
+  text-align: right;
+}
+
+html.rtl .standings-header,
+html.rtl .standing-row {
+  direction: rtl;
+  text-align: right;
+}
+
+html.rtl .summary-info {
+  direction: rtl;
+  text-align: right;
+}
+
+html.rtl .summary-info-item {
+  direction: rtl;
+}
+
+html.rtl .summary-actions {
+  flex-direction: row-reverse;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .players-list-header,

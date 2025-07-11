@@ -391,6 +391,60 @@
   margin-top: 5px;
 }
 
+/* RTL Support */
+html.rtl .tournament-history {
+  direction: rtl;
+  text-align: right;
+}
+
+html.rtl .history-container {
+  direction: rtl;
+}
+
+html.rtl .tournaments-list {
+  direction: rtl;
+}
+
+html.rtl .tournament-item {
+  direction: rtl;
+  text-align: right;
+  border-right: none;
+}
+
+html.rtl .tournament-item.selected {
+  border-right: 4px solid var(--primary-color);
+  border-left: none;
+}
+
+html.rtl .tournament-details {
+  direction: rtl;
+  text-align: right;
+}
+
+html.rtl .tournament-details-header {
+  direction: rtl;
+}
+
+html.rtl .player-row {
+  direction: rtl;
+  text-align: right;
+}
+
+html.rtl .players-list-header {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Fix chart direction */
+html.rtl .recharts-wrapper {
+  direction: ltr; /* Charts should stay LTR */
+}
+
+/* But keep chart labels RTL */
+html.rtl .recharts-text {
+  direction: rtl;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .history-container {

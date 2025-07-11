@@ -30,6 +30,21 @@
   }
 }
 
+/* RTL support for fullscreen mode */
+html.rtl:fullscreen .tournament-board-wrapper,
+html.rtl:-webkit-full-screen .tournament-board-wrapper,
+html.rtl:-moz-full-screen .tournament-board-wrapper,
+html.rtl:-ms-fullscreen .tournament-board-wrapper {
+  flex-direction: row-reverse !important;
+}
+
+html.rtl .player-sidebar-list-header,
+html.rtl .player-sidebar-item {
+  display: grid;
+  grid-template-columns: 1fr 80px 100px;
+  text-align: right;
+}
+
 /* Responsive Blinds */
 @media screen and (max-width: 1400px) {
   [data-board-content="true"] .chakra-heading[font-family="'Digital-7', monospace"] {

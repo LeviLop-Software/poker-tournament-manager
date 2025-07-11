@@ -304,3 +304,32 @@
   font-size: 1rem;
   margin: 0 auto;
 }
+
+/* RTL specific styles for the tournament board */
+html.rtl .tournament-board-wrapper {
+  direction: rtl;
+}
+
+html.rtl .board-sidebar {
+  border-right: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Flip the position of the sidebar in RTL */
+html.rtl .tournament-board-wrapper {
+  flex-direction: row-reverse;
+}
+
+html.rtl .player-sidebar {
+  border-right: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Tournament controls in RTL */
+html.rtl .tournament-controls-container {
+  direction: rtl;
+}
+
+html.rtl .controls-button-group {
+  flex-direction: row-reverse;
+}
