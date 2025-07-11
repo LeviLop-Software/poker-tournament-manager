@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import tournamentReducer from '../features/tournament/tournamentSlice';
 import playersReducer from '../features/players/playersSlice';
 import settingsReducer from '../features/settings/settingsSlice';
+import historyReducer from '../features/history/historySlice';
 
 export const store = configureStore({
   reducer: {
     tournament: tournamentReducer,
     players: playersReducer,
     settings: settingsReducer,
+    history: historyReducer,
   },
 });
 
@@ -54,6 +56,12 @@ try {
       store.dispatch({ 
         type: 'settings/setState', 
         payload: parsedState.settings 
+      });
+    }
+    if (parsedState.history) {
+      store.dispatch({ 
+        type: 'history/setState', 
+        payload: parsedState.history 
       });
     }
   }

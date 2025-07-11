@@ -16,7 +16,9 @@
     "summary": "סיכום טורניר",
     "editSettings": "עריכת הגדרות",
     "details": "פרטי טורניר",
-    "playWithAnte": "שחק עם אנטה"
+    "playWithAnte": "שחק עם אנטה",
+    "save": "שמור טורניר",
+    "savedSuccessfully": "הטורניר נשמר בהצלחה"
   },
   "player": {
     "management": "ניהול שחקנים",
@@ -82,7 +84,7 @@
     "exportError": "שגיאה בייצוא תוצאות הטורניר",
     "tournamentInfo": "פרטי הטורניר",
     "currentStandings": "דירוג נוכחי",
-    "finalStandings": "",
+    "finalStandings": "דירוג סופי",
     "topPlayers": "שחקנים מובילים",
     "tournamentStats": "סטטיסטיקת טורניר",
     "prizePool": "סכום הפרסים",
@@ -92,7 +94,9 @@
     "entries": "כניסות",
     "rank": "דירוג",
     "exportSummaryText": "ייצא סיכום כטקסט",
-    "exportSummaryImage": "ייצא סיכום כתמונה"
+    "exportSummaryImage": "ייצא סיכום כתמונה",
+    "position": "מיקום",
+    "profit": "רווח"
   },
   "settings": {
     "title": "הגדרות",
@@ -110,9 +114,39 @@
     "no": "לא"
   },
   "export": {
+    "generated": "נוצר",
     "asText": "ייצא כטקסט",
-    "asImage": "ייצא כתמונה",
-    "generated": "נוצר"
+    "asImage": "ייצא כתמונה"
+  },
+  "history": {
+    "title": "היסטוריית טורנירים",
+    "savedTournaments": "טורנירים שמורים",
+    "noTournaments": "עדיין לא נשמרו טורנירים.",
+    "delete": "מחק",
+    "confirmDelete": "האם אתה בטוח שברצונך למחוק את הטורניר הזה?",
+    "tournamentDetails": "פרטי הטורניר",
+    "finalStandings": "דירוג סופי",
+    "duration": "משך זמן",
+    "statistics": "סטטיסטיקות היסטוריות",
+    "mostProfitablePlayer": "השחקן הכי מרוויח",
+    "mostFrequentPlayer": "השחקן הכי תדיר",
+    "averageProfitPerTournament": "רווח ממוצע לטורניר",
+    "averageEntriesPerTournament": "כניסות ממוצעות לטורניר",
+    "profitTrend": "מגמת רווח",
+    "entriesTrend": "מגמת כניסות",
+    "tournamentsByMonth": "טורנירים לפי חודש",
+    "overallStats": "סטטיסטיקות כלליות",
+    "playerStats": "סטטיסטיקות שחקן",
+    "totalTournaments": "סה״כ טורנירים",
+    "averageDuration": "משך זמן ממוצע",
+    "totalProfitLoss": "סה״כ רווח/הפסד",
+    "winRate": "אחוז זכייה",
+    "bestFinish": "מיקום הטוב ביותר",
+    "averageProfit": "רווח ממוצע",
+    "profitByPlayer": "רווח לפי שחקן",
+    "entriesByPlayer": "כניסות לפי שחקן",
+    "noStatsAvailable": "אין מספיק נתונים לסטטיסטיקות. שחק עוד טורנירים!",
+    "lastTournaments": "{count} טורנירים אחרונים"
   },
   "actions": "פעולות"
 }

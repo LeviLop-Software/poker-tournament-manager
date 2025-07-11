@@ -16,7 +16,9 @@
     "summary": "Tournament Summary",
     "editSettings": "Edit Settings",
     "details": "Tournament Details",
-    "playWithAnte": "Play with Ante"
+    "playWithAnte": "Play with Ante",
+    "save": "Save Tournament",
+    "savedSuccessfully": "Tournament saved successfully"
   },
   "player": {
     "management": "Player Management",
@@ -81,7 +83,7 @@
     "exportError": "Error exporting tournament results",
     "tournamentInfo": "Tournament Information",
     "currentStandings": "Current Standings",
-    "finalStandings": "",
+    "finalStandings": "Final Standings",
     "topPlayers": "Top Players",
     "tournamentStats": "Tournament Statistics",
     "prizePool": "Prize Pool",
@@ -91,7 +93,10 @@
     "entries": "Entries",
     "rank": "Rank",
     "exportSummaryText": "Export Summary as Text",
-    "exportSummaryImage": "Export Summary as Image"
+    "exportSummaryImage": "Export Summary as Image",
+    "position": "Position",
+    "profit": "Profit",
+    "totalPlayers": "Total Players"
   },
   "settings": {
     "title": "Settings",
@@ -109,9 +114,39 @@
     "no": "No"
   },
   "export": {
+    "generated": "Generated",
     "asText": "Export as Text",
-    "asImage": "Export as Image",
-    "generated": "Generated"
+    "asImage": "Export as Image"
+  },
+  "history": {
+    "title": "Tournament History",
+    "savedTournaments": "Saved Tournaments",
+    "noTournaments": "No tournaments have been saved yet.",
+    "delete": "Delete",
+    "confirmDelete": "Are you sure you want to delete this tournament?",
+    "tournamentDetails": "Tournament Details",
+    "finalStandings": "Final Standings",
+    "duration": "Duration",
+    "statistics": "Historical Statistics",
+    "mostProfitablePlayer": "Most Profitable Player",
+    "mostFrequentPlayer": "Most Frequent Player",
+    "averageProfitPerTournament": "Average Profit Per Tournament",
+    "averageEntriesPerTournament": "Average Entries Per Tournament",
+    "profitTrend": "Profit Trend",
+    "entriesTrend": "Entries Trend",
+    "tournamentsByMonth": "Tournaments By Month",
+    "overallStats": "Overall Statistics",
+    "playerStats": "Player Statistics",
+    "totalTournaments": "Total Tournaments",
+    "averageDuration": "Average Duration",
+    "totalProfitLoss": "Total Profit/Loss",
+    "winRate": "Win Rate",
+    "bestFinish": "Best Finish",
+    "averageProfit": "Average Profit",
+    "profitByPlayer": "Profit By Player",
+    "entriesByPlayer": "Entries By Player",
+    "noStatsAvailable": "Not enough data for statistics. Play more tournaments!",
+    "lastTournaments": "Last {count} Tournaments"
   },
   "actions": "Actions"
 }

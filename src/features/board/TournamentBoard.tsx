@@ -370,11 +370,20 @@ const TournamentBoard = () => {
               const position = idx + 1;
               const prize = prizeDistribution[idx] || 0;
               
+              // Hide the "1st Place" text when there's only one winner
+              const showPositionText = !(settings.cashoutPlaces === 1 && position === 1);
+              
               return (
                 <Box key={idx} textAlign="center" px={2}>
-                <Text fontSize="2xl" color="gray.300" textTransform="uppercase" fontWeight="bold">
-                    {position}{position === 1 ? 'st' : position === 2 ? 'nd' : position === 3 ? 'rd' : 'th'} {t('board.place')}
-                  </Text>
+                  {showPositionText ? (
+                    <Text fontSize="2xl" color="gray.300" textTransform="uppercase" fontWeight="bold">
+                      {position}{position === 1 ? 'st' : position === 2 ? 'nd' : position === 3 ? 'rd' : 'th'} {t('board.place')}
+                    </Text>
+                  ) : (
+                    <Text fontSize="2xl" color="gray.300" textTransform="uppercase" fontWeight="bold">
+                      {t('statistics.prizePool')}
+                    </Text>
+                  )}
                   <Text fontSize="3xl" fontWeight="bold" color={position === 1 ? "#FFD700" : position === 2 ? "#C0C0C0" : position === 3 ? "#CD7F32" : "white"}>
                     {formatCurrency(prize)}
                   </Text>

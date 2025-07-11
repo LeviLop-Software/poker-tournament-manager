@@ -5,9 +5,12 @@ import {
   calculateStatistics, 
   formatCurrency, 
   exportTournamentSummaryAsText,
-  exportTournamentSummaryAsImage
+  exportTournamentSummaryAsImage,
+  calculateProfit
 } from '../../utils/tournament';
-import { updateFinalChips } from '../../features/tournament/tournamentSlice';
+import { createTournamentRecord } from '../../utils/history';
+import { updateFinalChips } from '../tournament/tournamentSlice';
+import { saveTournament } from '../history/historySlice';
 import type { RootState } from '../../store';
 import type { Player } from '../../types';
 import { format } from 'date-fns';
@@ -74,6 +77,22 @@ const TournamentSummary = () => {
     );
   };
 
+  const handleSaveTournament = () => {
+    const tournamentRecord = createTournamentRecord(
+      tournamentName,
+      players,
+      entryFee,
+      startingChips,
+      tournamentState.elapsedTime,
+      finalChips,
+      playWithAnte
+    );
+    dispatch(saveTournament(tournamentRecord));
+    
+    // Show a confirmation message
+    alert(t('tournament.savedSuccessfully'));
+  };
+
   return (
     <div className="tournament-summary">
       <div className="summary-header">
@@ -90,6 +109,12 @@ const TournamentSummary = () => {
             onClick={handleExportSummaryAsImage}
           >
             {t('export.asImage')}
+          </button>
+          <button 
+            className="save-tournament-btn"
+            onClick={handleSaveTournament}
+          >
+            {t('tournament.save')}
           </button>
         </div>
       </div>

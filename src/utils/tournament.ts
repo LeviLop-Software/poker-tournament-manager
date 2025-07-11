@@ -141,7 +141,13 @@ export const generateTournamentSummary = (
     const chipsText = player.active ? `${playerChips.toLocaleString()} ${t('player.chips')}` : '';
     const entriesText = `${1 + player.rebuys} ${t('statistics.entries')}`;
     
-    summary += `${player.name} - ${statusText} - ${entriesText}${chipsText ? ` - ${chipsText}` : ''}${rankText ? ` - ${rankText}` : ''}\n`;
+    // Calculate profit
+    const entryCost = entryFee * (1 + player.rebuys);
+    const cashEquivalent = player.active ? calculateCashEquivalent(playerChips, startingChips, entryFee) : 0;
+    const profit = player.active ? cashEquivalent - entryCost : -entryCost;
+    const profitText = `${t('statistics.profit')}: ${formatCurrency(profit)}`;
+    
+    summary += `${player.name} - ${statusText} - ${entriesText}${chipsText ? ` - ${chipsText}` : ''}${rankText ? ` - ${rankText}` : ''} - ${profitText}\n`;
   });
   
   return summary;
@@ -226,6 +232,7 @@ export const exportTournamentSummaryAsImage = (
                 <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">${t('statistics.entries')}</th>
                 <th style="padding: 10px; text-align: ${i18next.language === 'he' ? 'left' : 'right'}; border-bottom: 1px solid #ddd;">${t('player.chips')}</th>
                 <th style="padding: 10px; text-align: ${i18next.language === 'he' ? 'left' : 'right'}; border-bottom: 1px solid #ddd;">${t('statistics.cashEquivalent')}</th>
+                <th style="padding: 10px; text-align: ${i18next.language === 'he' ? 'left' : 'right'}; border-bottom: 1px solid #ddd;">${t('statistics.profit')}</th>
               </tr>
             </thead>
             <tbody>
@@ -242,7 +249,13 @@ export const exportTournamentSummaryAsImage = (
                 })
                 .map((player, index) => {
                   const playerChips = finalChips?.[player.id] !== undefined ? finalChips[player.id] : player.chips;
-                  const cashEquivalent = player.active ? formatCurrency(calculateCashEquivalent(playerChips, startingChips, entryFee)) : '-';
+                  const cashEquivalent = player.active ? calculateCashEquivalent(playerChips, startingChips, entryFee) : 0;
+                  const entryCost = entryFee * (1 + player.rebuys);
+                  const profit = player.active ? cashEquivalent - entryCost : -entryCost;
+                  const formattedCashEquivalent = player.active ? formatCurrency(cashEquivalent) : '-';
+                  const formattedProfit = formatCurrency(profit);
+                  const profitColor = profit >= 0 ? '#52c41a' : '#f5222d';
+                  
                   return `
                   <tr style="background: ${index % 2 === 0 ? '#fff' : '#f9fafb'};">
                     <td style="padding: 10px; text-align: ${i18next.language === 'he' ? 'right' : 'left'}; border-bottom: 1px solid #ddd;">${player.name}</td>
@@ -253,7 +266,8 @@ export const exportTournamentSummaryAsImage = (
                     </td>
                     <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">${1 + player.rebuys}</td>
                     <td style="padding: 10px; text-align: ${i18next.language === 'he' ? 'left' : 'right'}; border-bottom: 1px solid #ddd;">${player.active ? playerChips.toLocaleString() : '-'}</td>
-                    <td style="padding: 10px; text-align: ${i18next.language === 'he' ? 'left' : 'right'}; border-bottom: 1px solid #ddd;">${cashEquivalent}</td>
+                    <td style="padding: 10px; text-align: ${i18next.language === 'he' ? 'left' : 'right'}; border-bottom: 1px solid #ddd;">${formattedCashEquivalent}</td>
+                    <td style="padding: 10px; text-align: ${i18next.language === 'he' ? 'left' : 'right'}; border-bottom: 1px solid #ddd; color: ${profitColor};">${formattedProfit}</td>
                   </tr>
                 `}).join('')}
             </tbody>
@@ -278,4 +292,18 @@ export const exportTournamentSummaryAsImage = (
       resolve();
     });
   });
+};
+
+/**
+ * Calculates player's profit (cash equivalent minus entry costs)
+ */
+export const calculateProfit = (
+  chips: number,
+  startingChips: number,
+  entryFee: number,
+  entries: number
+): number => {
+  const cashEquivalent = calculateCashEquivalent(chips, startingChips, entryFee);
+  const entryCost = entryFee * entries;
+  return cashEquivalent - entryCost;
 };

@@ -50,6 +50,31 @@ export interface Statistics {
   averageChipStack: number;
 }
 
+// New interfaces for tournament history
+export interface PlayerResult {
+  id: string;
+  name: string;
+  finalPosition: number;
+  entries: number; // initial entry + rebuys
+  finalChips: number;
+  cashEquivalent: number;
+  profit: number; // Cash equivalent minus entry costs
+}
+
+export interface SavedTournament {
+  id: string;
+  date: string; // ISO date string
+  name: string;
+  entryFee: number;
+  startingChips: number;
+  totalEntries: number;
+  totalPlayers: number;
+  totalPrizePool: number;
+  playWithAnte: boolean;
+  duration: number; // in seconds
+  players: PlayerResult[];
+}
+
 export interface AppTheme {
   name: string;
   colorMode: 'light' | 'dark';

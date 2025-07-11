@@ -9,6 +9,7 @@ import TournamentControls from './features/tournament/TournamentControls';
 import PlayerManagement from './features/players/PlayerManagement';
 import TournamentSettings from './features/settings/TournamentSettings';
 import TournamentSummary from './features/tournament/TournamentSummary';
+import TournamentHistory from './features/history/TournamentHistory';
 
 function App() {
   return (
@@ -130,12 +131,19 @@ function AppContent() {
           >
             {t('tournament.summary')}
           </button>
+          <button 
+            className={`tab-button ${activeTab === 3 ? 'active' : ''}`}
+            onClick={() => setActiveTab(3)}
+          >
+            {t('history.title')}
+          </button>
         </div>
         
         <div className="tab-content">
           {activeTab === 0 && <PlayerManagement />}
           {activeTab === 1 && <TournamentSettings />}
           {activeTab === 2 && <TournamentSummary />}
+          {activeTab === 3 && <TournamentHistory />}
         </div>
       </div>
     </div>
