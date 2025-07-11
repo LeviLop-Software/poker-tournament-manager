@@ -43,15 +43,15 @@
     "start": "התחל",
     "pause": "השהה",
     "resume": "המשך",
-    "nextLevel": "רמה הבאה",
-    "previousLevel": "רמה קודמת",
+    "nextLevel": "שלב הבא",
+    "previousLevel": "שלב קודם",
     "restart": "התחל מחדש"
   },
   "time": {
     "minutes": "דק'"
   },
   "board": {
-    "level": "רמה",
+    "level": "שלב",
     "currentBlinds": "בליינדים נוכחיים",
     "nextBlinds": "בליינדים הבאים",
     "timeRemaining": "זמן נותר",
@@ -64,7 +64,7 @@
     "secondPlace": "מקום שני",
     "thirdPlace": "מקום שלישי",
     "cashoutPlaces": "מקומות לפרסים",
-    "addLevel": "הוסף רמה"
+    "addLevel": "הוסף שלב"
   },
   "statistics": {
     "title": "סטטיסטיקה",

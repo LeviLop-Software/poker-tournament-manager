@@ -85,6 +85,21 @@
   --theme-text-muted: rgba(255, 255, 255, 0.7);
 }
 
+/* Purple Casino Theme (New) */
+.theme-purple-casino {
+  --theme-primary: #4a0d67;
+  --theme-secondary: #6a1b9a;
+  --theme-accent: #f4d03f;
+  --theme-bg-gradient-start: #3a0650;
+  --theme-bg-gradient-end: #220630;
+  --theme-header-bg: linear-gradient(90deg, #1a0427, #3a0650, #1a0427);
+  --theme-text-light: #f4d03f;  /* Gold/cream colored text */
+  --theme-text-muted: rgba(244, 208, 63, 0.7);
+  --theme-border-accent: rgba(244, 208, 63, 0.3);
+  --theme-box-bg: rgba(30, 6, 40, 0.8);
+  --theme-timer-glow: rgba(244, 208, 63, 0.4);
+}
+
 .dark-theme {
   --text-color: #f0f0f0;
   --background-color: #121212;

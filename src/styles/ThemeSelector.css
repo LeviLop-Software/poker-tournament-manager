@@ -68,6 +68,10 @@
   background: linear-gradient(145deg, #CC5200, #FF6600);
 }
 
+.theme-purple-casino {
+  background: linear-gradient(145deg, #3a0650, #220630);
+}
+
 .theme-selector-label {
   flex-basis: 100%;
   font-weight: 600;

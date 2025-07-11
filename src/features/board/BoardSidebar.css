@@ -49,9 +49,47 @@
   background: var(--theme-bg-gradient-start);
 }
 
-.player-sidebar::-webkit-scrollbar-thumb {
-  background-color: var(--theme-secondary);
-  border-radius: 4px;
+/* Purple casino theme styles for sidebar */
+.player-sidebar.purple-theme {
+  background: var(--theme-header-bg, linear-gradient(90deg, #1a0427, #3a0650, #1a0427));
+  border-left: 1px solid var(--theme-border-accent, rgba(255, 255, 255, 0.1));
+}
+
+.player-sidebar.purple-theme .player-sidebar-header {
+  background: var(--theme-box-bg, rgba(0, 0, 0, 0.3));
+  color: var(--theme-text-light, #ffffff);
+  border-bottom: 1px solid var(--theme-border-accent, rgba(255, 255, 255, 0.1));
+}
+
+.player-sidebar.purple-theme .player-sidebar-list-header {
+  background: var(--theme-box-bg, rgba(0, 0, 0, 0.2));
+  color: var(--theme-text-muted, rgba(255, 255, 255, 0.7));
+  border-bottom: 1px solid var(--theme-border-accent, rgba(255, 255, 255, 0.1));
+}
+
+.player-sidebar.purple-theme .player-sidebar-item {
+  background: var(--theme-bg-gradient-start, #0a2447);
+  border-bottom: 1px solid var(--theme-border-accent, rgba(255, 255, 255, 0.05));
+}
+
+.player-sidebar.purple-theme .player-sidebar-item:hover {
+  background: var(--theme-box-bg, rgba(30, 6, 40, 0.8));
+}
+
+.player-sidebar.purple-theme .player-sidebar-item.active {
+  background: var(--theme-box-bg, rgba(30, 6, 40, 0.8));
+}
+
+.player-sidebar.purple-theme .player-sidebar-status-active {
+  color: var(--theme-accent, #f4d03f);
+  background: rgba(30, 6, 40, 0.6);
+  border: 1px solid var(--theme-border-accent, rgba(255, 255, 255, 0.1));
+}
+
+.player-sidebar.purple-theme .player-sidebar-status-eliminated {
+  color: #ff6b6b;
+  background: rgba(30, 6, 40, 0.6);
+  border: 1px solid var(--theme-border-accent, rgba(255, 255, 255, 0.1));
 }
 
 .player-sidebar-header {

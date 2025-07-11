@@ -33,6 +33,7 @@ function AppContent() {
       'theme-london',
       'theme-paris',
       'theme-netherlands',
+      'theme-purple-casino',
       'dark-theme'
     );
 
@@ -52,7 +53,7 @@ function AppContent() {
   useEffect(() => {
     // Load saved theme preference from local storage if available
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme && savedTheme !== 'default') {
+    if (savedTheme) {
       changeTheme(savedTheme);
       setCurrentTheme(savedTheme);
     }
@@ -115,6 +116,11 @@ function AppContent() {
               className={`theme-option theme-netherlands ${currentTheme === 'netherlands' ? 'active' : ''}`}
               onClick={() => changeTheme('netherlands')}
               title="Netherlands"
+            />
+            <div 
+              className={`theme-option theme-purple-casino ${currentTheme === 'purple-casino' ? 'active' : ''}`}
+              onClick={() => changeTheme('purple-casino')}
+              title="Purple Casino"
             />
           </div>
         </div>
