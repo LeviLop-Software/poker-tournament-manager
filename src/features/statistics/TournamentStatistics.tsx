@@ -61,17 +61,20 @@ const TournamentStatistics: React.FC<TournamentStatisticsProps> = ({ displayMode
 
   const exportTournamentResults = () => {
     try {
-      // Sort players by chip count (descending), using final chips if available
+      // Sort players by profit (descending), using final chips if available
       const sortedPlayers = [...players].sort((a, b) => {
-        const aChips = finalChips[a.id] !== undefined ? finalChips[a.id] : a.chips;
-        const bChips = finalChips[b.id] !== undefined ? finalChips[b.id] : b.chips;
+        const aChips = a.active ? (finalChips[a.id] !== undefined ? finalChips[a.id] : a.chips) : 0;
+        const bChips = b.active ? (finalChips[b.id] !== undefined ? finalChips[b.id] : b.chips) : 0;
         
-        // Active players with chips first
-        if (a.active && !b.active) return -1;
-        if (!a.active && b.active) return 1;
+        const aEntryCost = entryFee * (1 + a.rebuys);
+        const bEntryCost = entryFee * (1 + b.rebuys);
+        const aCashEquivalent = a.active ? calculateCashEquivalent(aChips, startingChips, entryFee) : 0;
+        const bCashEquivalent = b.active ? calculateCashEquivalent(bChips, startingChips, entryFee) : 0;
+        const aProfit = a.active ? aCashEquivalent - aEntryCost : -aEntryCost;
+        const bProfit = b.active ? bCashEquivalent - bEntryCost : -bEntryCost;
         
-        // Then by chip count (descending)
-        return bChips - aChips;
+        // Sort by profit (descending)
+        return bProfit - aProfit;
       });
       
       // Calculate prize distribution
@@ -165,14 +168,20 @@ const TournamentStatistics: React.FC<TournamentStatisticsProps> = ({ displayMode
       const standingsDiv = document.createElement('div');
       standingsDiv.className = 'image-export-standings';
       
-      // Sort players by chip count
+      // Sort players by profit
       const sortedPlayers = [...players].sort((a, b) => {
-        const aChips = finalChips[a.id] !== undefined ? finalChips[a.id] : a.chips;
-        const bChips = finalChips[b.id] !== undefined ? finalChips[b.id] : b.chips;
+        const aChips = a.active ? (finalChips[a.id] !== undefined ? finalChips[a.id] : a.chips) : 0;
+        const bChips = b.active ? (finalChips[b.id] !== undefined ? finalChips[b.id] : b.chips) : 0;
         
-        if (a.active && !b.active) return -1;
-        if (!a.active && b.active) return 1;
-        return bChips - aChips;
+        const aEntryCost = entryFee * (1 + a.rebuys);
+        const bEntryCost = entryFee * (1 + b.rebuys);
+        const aCashEquivalent = a.active ? calculateCashEquivalent(aChips, startingChips, entryFee) : 0;
+        const bCashEquivalent = b.active ? calculateCashEquivalent(bChips, startingChips, entryFee) : 0;
+        const aProfit = a.active ? aCashEquivalent - aEntryCost : -aEntryCost;
+        const bProfit = b.active ? bCashEquivalent - bEntryCost : -bEntryCost;
+        
+        // Sort by profit (descending)
+        return bProfit - aProfit;
       });
       
       // Calculate prize distribution
@@ -305,12 +314,22 @@ const TournamentStatistics: React.FC<TournamentStatisticsProps> = ({ displayMode
             </div>
             <div className="players-list-content">
               {players
-                // First sort active players to the top, then by chip count (high to low), then by name
+                // Sort by profit (high to low), then by name
                 .sort((a, b) => {
-                  if (a.active && !b.active) return -1;
-                  if (!a.active && b.active) return 1;
-                  if (a.active && b.active) return b.chips - a.chips;
-                  return a.name.localeCompare(b.name);
+                  const aChips = a.active ? (finalChips[a.id] !== undefined ? finalChips[a.id] : a.chips) : 0;
+                  const bChips = b.active ? (finalChips[b.id] !== undefined ? finalChips[b.id] : b.chips) : 0;
+                  
+                  // Calculate profit for both players
+                  const aEntryCost = entryFee * (1 + a.rebuys);
+                  const bEntryCost = entryFee * (1 + b.rebuys);
+                  const aCashEquivalent = a.active ? calculateCashEquivalent(aChips, startingChips, entryFee) : 0;
+                  const bCashEquivalent = b.active ? calculateCashEquivalent(bChips, startingChips, entryFee) : 0;
+                  const aProfit = a.active ? aCashEquivalent - aEntryCost : -aEntryCost;
+                  const bProfit = b.active ? bCashEquivalent - bEntryCost : -bEntryCost;
+                  
+                  const profitComparison = bProfit - aProfit;
+                  // If profits are the same, sort by name
+                  return profitComparison === 0 ? a.name.localeCompare(b.name) : profitComparison;
                 })
                 .map((player: Player) => (
                   <div key={player.id} className={`player-list-item ${player.active ? 'active' : 'eliminated'}`}>
@@ -381,7 +400,22 @@ const TournamentStatistics: React.FC<TournamentStatisticsProps> = ({ displayMode
                 <p className="summary-instructions">{t('statistics.finalChipsInstructions')}</p>
                 
                 <div className="final-chips-list">
-                  {players.sort((a: Player, b: Player) => b.chips - a.chips).map((player: Player) => (
+                  {players
+                    .sort((a: Player, b: Player) => {
+                      const aChips = finalChips[a.id] !== undefined ? finalChips[a.id] : a.chips;
+                      const bChips = finalChips[b.id] !== undefined ? finalChips[b.id] : b.chips;
+                      
+                      // Calculate profit for both players
+                      const aEntryCost = entryFee * (1 + a.rebuys);
+                      const bEntryCost = entryFee * (1 + b.rebuys);
+                      const aCashEquivalent = calculateCashEquivalent(aChips, startingChips, entryFee);
+                      const bCashEquivalent = calculateCashEquivalent(bChips, startingChips, entryFee);
+                      const aProfit = aCashEquivalent - aEntryCost;
+                      const bProfit = bCashEquivalent - bEntryCost;
+                      
+                      return bProfit - aProfit;
+                    })
+                    .map((player: Player) => (
                     <div key={player.id} className="final-chip-item">
                       <span className="player-name">{player.name}</span>
                       <div className="chip-input-container">

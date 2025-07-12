@@ -219,7 +219,10 @@ const TournamentHistory: React.FC = () => {
                       <div className="player-profit">{t('statistics.profit')}</div>
                     </div>
                     
-                    {selectedTournament.players.map((player) => (
+                    {/* Sort players by profit before displaying */}
+                    {[...selectedTournament.players]
+                      .sort((a, b) => b.profit - a.profit)
+                      .map((player) => (
                       <div key={player.id} className="player-row">
                         <div className="player-position">{player.finalPosition}</div>
                         <div className="player-name">{player.name}</div>

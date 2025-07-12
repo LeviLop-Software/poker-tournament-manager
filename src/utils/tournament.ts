@@ -87,25 +87,21 @@ export const generateTournamentSummary = (
   const timestamp = new Date().toLocaleString();
   const t = i18next.t;
   
-  // Sort players: active first (by chips descending), then eliminated
+  // Sort players by profit (for both active and eliminated players)
   const sortedPlayers = [...players].sort((a, b) => {
-    // First sort by active status
-    if (a.active && !b.active) return -1;
-    if (!a.active && b.active) return 1;
+    // Calculate profit for both players, regardless of active status
+    const aChips = a.active ? (finalChips?.[a.id] !== undefined ? finalChips[a.id] : a.chips) : 0;
+    const bChips = b.active ? (finalChips?.[b.id] !== undefined ? finalChips[b.id] : b.chips) : 0;
     
-    // For active players, sort by chips
-    if (a.active && b.active) {
-      const aChips = finalChips?.[a.id] !== undefined ? finalChips[a.id] : a.chips;
-      const bChips = finalChips?.[b.id] !== undefined ? finalChips[b.id] : b.chips;
-      return bChips - aChips;
-    }
+    const aEntryCost = entryFee * (1 + a.rebuys);
+    const bEntryCost = entryFee * (1 + b.rebuys);
+    const aCashEquivalent = a.active ? calculateCashEquivalent(aChips, startingChips, entryFee) : 0;
+    const bCashEquivalent = b.active ? calculateCashEquivalent(bChips, startingChips, entryFee) : 0;
+    const aProfit = a.active ? aCashEquivalent - aEntryCost : -aEntryCost;
+    const bProfit = b.active ? bCashEquivalent - bEntryCost : -bEntryCost;
     
-    // For eliminated players, sort by elimination level (if available)
-    if (a.eliminatedAt && b.eliminatedAt) {
-      return b.eliminatedAt - a.eliminatedAt;
-    }
-    
-    return 0;
+    // Sort by profit, highest first
+    return bProfit - aProfit;
   });
   
   let summary = `${t('tournament.summary')}: ${tournamentName}\n`;
@@ -238,14 +234,19 @@ export const exportTournamentSummaryAsImage = (
             <tbody>
               ${[...players]
                 .sort((a, b) => {
-                  if (a.active && !b.active) return -1;
-                  if (!a.active && b.active) return 1;
-                  if (a.active && b.active) {
-                    const aChips = finalChips?.[a.id] !== undefined ? finalChips[a.id] : a.chips;
-                    const bChips = finalChips?.[b.id] !== undefined ? finalChips[b.id] : b.chips;
-                    return bChips - aChips;
-                  }
-                  return 0;
+                  // Calculate profit for both players, regardless of active status
+                  const aChips = a.active ? (finalChips?.[a.id] !== undefined ? finalChips[a.id] : a.chips) : 0;
+                  const bChips = b.active ? (finalChips?.[b.id] !== undefined ? finalChips[b.id] : b.chips) : 0;
+                  
+                  const aEntryCost = entryFee * (1 + a.rebuys);
+                  const bEntryCost = entryFee * (1 + b.rebuys);
+                  const aCashEquivalent = a.active ? calculateCashEquivalent(aChips, startingChips, entryFee) : 0;
+                  const bCashEquivalent = b.active ? calculateCashEquivalent(bChips, startingChips, entryFee) : 0;
+                  const aProfit = a.active ? aCashEquivalent - aEntryCost : -aEntryCost;
+                  const bProfit = b.active ? bCashEquivalent - bEntryCost : -bEntryCost;
+                  
+                  // Sort by profit, highest first
+                  return bProfit - aProfit;
                 })
                 .map((player, index) => {
                   const playerChips = finalChips?.[player.id] !== undefined ? finalChips[player.id] : player.chips;
