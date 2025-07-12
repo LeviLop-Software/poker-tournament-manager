@@ -37,13 +37,11 @@ const TournamentStatistics: React.FC = () => {
   // Memoize statistics to avoid recalculating on each render
   const overallStats = useMemo(() => {
     return calculateOverallStats(savedTournaments);
-  }, [savedTournaments]);
-  
-  // Extract all unique player IDs
+  }, [savedTournaments]);    // Extract all unique player IDs
   const uniquePlayerIds = useMemo(() => {
     const playerIds = new Set<string>();
-    savedTournaments.forEach(tournament => {
-      tournament.players.forEach(player => {
+    savedTournaments.forEach((tournament: SavedTournament) => {
+      tournament.players.forEach((player: any) => {
         playerIds.add(player.id);
       });
     });

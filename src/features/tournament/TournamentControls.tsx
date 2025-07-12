@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import { 
   ButtonGroup, 
   Button, 
@@ -38,7 +38,7 @@ const TournamentControls = () => {
   const totalLevels = useAppSelector((state: RootState) => state.tournament.settings.blindsStructure.length);
   
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [resetFocus, setResetFocus] = useState<HTMLButtonElement | null>(null);
+  const cancelRef = useRef<HTMLButtonElement>(null);
 
   const handleStartPause = () => {
     if (!isRunning) {
@@ -91,7 +91,6 @@ const TournamentControls = () => {
             colorScheme="red" 
             onClick={onOpen} 
             isDisabled={!isRunning}
-            ref={setResetFocus}
           >
             {t('controls.restart')}
           </Button>
@@ -100,7 +99,7 @@ const TournamentControls = () => {
 
       <AlertDialog
         isOpen={isOpen}
-        leastDestructiveRef={resetFocus}
+        leastDestructiveRef={cancelRef}
         onClose={onClose}
       >
         <AlertDialogOverlay>
@@ -114,7 +113,7 @@ const TournamentControls = () => {
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={resetFocus} onClick={onClose}>
+              <Button ref={cancelRef} onClick={onClose}>
                 {t('confirm.no')}
               </Button>
               <Button colorScheme="red" onClick={handleReset} ml={3}>
