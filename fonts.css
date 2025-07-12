@@ -1,0 +1,19 @@
+/* Custom fonts for poker tournament display */
+@font-face {
+  font-family: 'Digital-7';
+  src: url('https://cdn.jsdelivr.net/npm/digital-7@1.0.0/index.css');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Add poker chip icon styles */
+.chip-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #FFD700, #e6c300);
+  border: 2px solid #333;
+  margin-right: 5px;
+  vertical-align: middle;
+}
