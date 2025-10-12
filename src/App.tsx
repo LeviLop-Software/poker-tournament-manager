@@ -10,6 +10,7 @@ import PlayerManagement from './features/players/PlayerManagement';
 import TournamentSettings from './features/settings/TournamentSettings';
 import TournamentSummary from './features/tournament/TournamentSummary';
 import TournamentHistory from './features/history/TournamentHistory';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -166,6 +167,8 @@ function AppContent() {
           {activeTab === 3 && <TournamentHistory />}
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 }

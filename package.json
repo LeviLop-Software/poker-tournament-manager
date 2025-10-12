@@ -1,7 +1,7 @@
 {
   "name": "poker-tournament-manager",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.1",
   "type": "module",
   "homepage": "https://levilop-software.github.io/poker-tournament-manager",
   "scripts": {
@@ -9,7 +9,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",
+    "version:patch": "npm version patch --no-git-tag-version",
+    "predeploy": "npm run version:patch && npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

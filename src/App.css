@@ -126,6 +126,8 @@ body {
   max-width: 100%;
   margin: 0 auto;
   padding: 1rem;
+  padding-bottom: 60px; /* Add space for footer */
+  min-height: 100vh;
 }
 
 /* Fullscreen styles */
