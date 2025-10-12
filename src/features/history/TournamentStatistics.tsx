@@ -37,24 +37,24 @@ const TournamentStatistics: React.FC = () => {
   // Memoize statistics to avoid recalculating on each render
   const overallStats = useMemo(() => {
     return calculateOverallStats(savedTournaments);
-  }, [savedTournaments]);    // Extract all unique player IDs
-  const uniquePlayerIds = useMemo(() => {
-    const playerIds = new Set<string>();
+  }, [savedTournaments]);  // Extract all unique player names
+  const uniquePlayerNames = useMemo(() => {
+    const playerNames = new Set<string>();
     savedTournaments.forEach((tournament: SavedTournament) => {
       tournament.players.forEach((player: any) => {
-        playerIds.add(player.id);
+        playerNames.add(player.name);
       });
     });
-    return Array.from(playerIds);
+    return Array.from(playerNames);
   }, [savedTournaments]);
   
   // Calculate player statistics for all players
   const allPlayerStats = useMemo(() => {
-    return uniquePlayerIds
-      .map(playerId => calculatePlayerStats(playerId, savedTournaments))
+    return uniquePlayerNames
+      .map(playerName => calculatePlayerStats(playerName, savedTournaments))
       .filter(stats => stats !== null)
       .sort((a, b) => (b?.totalProfit || 0) - (a?.totalProfit || 0));
-  }, [savedTournaments, uniquePlayerIds]);
+  }, [savedTournaments, uniquePlayerNames]);
   
   // Get stats for the selected player
   const selectedPlayerStats = useMemo(() => {
@@ -86,7 +86,7 @@ const TournamentStatistics: React.FC = () => {
   // If no player is selected, select the most profitable player by default
   useEffect(() => {
     if (allPlayerStats.length > 0 && !selectedPlayer) {
-      setSelectedPlayer(allPlayerStats[0]?.id || null);
+      setSelectedPlayer(allPlayerStats[0]?.name || null);
     }
   }, [allPlayerStats, selectedPlayer]);
   
@@ -261,7 +261,7 @@ const TournamentStatistics: React.FC = () => {
               onChange={(e) => setSelectedPlayer(e.target.value)}
             >
               {allPlayerStats.map(stats => (
-                <option key={stats?.id} value={stats?.id}>
+                <option key={stats?.name} value={stats?.name}>
                   {stats?.name}
                 </option>
               ))}

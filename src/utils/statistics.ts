@@ -43,25 +43,22 @@ interface OverallStats {
  * Calculate statistics for a specific player across all tournaments
  */
 export const calculatePlayerStats = (
-  playerId: string,
+  playerName: string,
   tournaments: SavedTournament[]
 ): PlayerStats | null => {
-  // Find tournaments where this player participated
+  // Find tournaments where this player participated (by name)
   const playerTournaments = tournaments.filter(tournament => 
-    tournament.players.some(player => player.id === playerId)
+    tournament.players.some(player => player.name === playerName)
   );
   
   if (playerTournaments.length === 0) {
     return null;
   }
   
-  // Extract all results for this player
+  // Extract all results for this player (by name)
   const playerResults = playerTournaments.map(tournament => 
-    tournament.players.find(player => player.id === playerId)!
+    tournament.players.find(player => player.name === playerName)!
   );
-  
-  // Get player name from any tournament
-  const playerName = playerResults[0].name;
   
   // Calculate total tournaments and entries
   const totalTournaments = playerTournaments.length;
@@ -81,7 +78,7 @@ export const calculatePlayerStats = (
   const winRate = (winCount / totalTournaments) * 100;
   
   return {
-    id: playerId,
+    id: playerName, // Use player name as ID for consistency
     name: playerName,
     totalTournaments,
     totalEntries,
@@ -110,14 +107,14 @@ export const calculateOverallStats = (
   // Calculate total entries across all tournaments
   const totalEntries = tournaments.reduce((acc, tournament) => acc + tournament.totalEntries, 0);
   
-  // Calculate total unique players
-  const playerIds = new Set<string>();
+  // Calculate total unique players (by name)
+  const playerNames = new Set<string>();
   tournaments.forEach(tournament => {
     tournament.players.forEach(player => {
-      playerIds.add(player.id);
+      playerNames.add(player.name);
     });
   });
-  const uniquePlayers = playerIds.size;
+  const uniquePlayers = playerNames.size;
   
   // Calculate total and average players per tournament
   const totalPlayers = tournaments.reduce((acc, tournament) => acc + tournament.totalPlayers, 0);
@@ -129,12 +126,12 @@ export const calculateOverallStats = (
   // Calculate average entries per tournament
   const averageEntries = totalEntries / totalTournaments;
   
-  // Find most profitable player
+  // Find most profitable player (by name)
   const playerProfits = new Map<string, { name: string, profit: number }>();
   tournaments.forEach(tournament => {
     tournament.players.forEach(player => {
-      const currentProfit = playerProfits.get(player.id)?.profit || 0;
-      playerProfits.set(player.id, {
+      const currentProfit = playerProfits.get(player.name)?.profit || 0;
+      playerProfits.set(player.name, {
         name: player.name,
         profit: currentProfit + player.profit
       });
@@ -144,12 +141,12 @@ export const calculateOverallStats = (
   const mostProfitablePlayer = Array.from(playerProfits.values())
     .sort((a, b) => b.profit - a.profit)[0];
   
-  // Find most frequent player
+  // Find most frequent player (by name)
   const playerFrequency = new Map<string, { name: string, count: number }>();
   tournaments.forEach(tournament => {
     tournament.players.forEach(player => {
-      const currentCount = playerFrequency.get(player.id)?.count || 0;
-      playerFrequency.set(player.id, {
+      const currentCount = playerFrequency.get(player.name)?.count || 0;
+      playerFrequency.set(player.name, {
         name: player.name,
         count: currentCount + 1
       });
@@ -213,8 +210,8 @@ export const prepareProfitByPlayerData = (
   
   tournaments.forEach(tournament => {
     tournament.players.forEach(player => {
-      const currentProfit = playerProfits.get(player.id)?.profit || 0;
-      playerProfits.set(player.id, {
+      const currentProfit = playerProfits.get(player.name)?.profit || 0;
+      playerProfits.set(player.name, {
         name: player.name,
         profit: currentProfit + player.profit
       });
@@ -236,8 +233,8 @@ export const prepareEntriesByPlayerData = (
   
   tournaments.forEach(tournament => {
     tournament.players.forEach(player => {
-      const currentEntries = playerEntries.get(player.id)?.entries || 0;
-      playerEntries.set(player.id, {
+      const currentEntries = playerEntries.get(player.name)?.entries || 0;
+      playerEntries.set(player.name, {
         name: player.name,
         entries: currentEntries + player.entries
       });
