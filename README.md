@@ -2,6 +2,8 @@
 
 An advanced, feature-rich React application for managing poker tournaments with professional, casino-style features.
 
+https://levilop-software.github.io/poker-tournament-manager
+
 ## Features
 
 - Modern, responsive UI with customizable themes
